@@ -83,11 +83,11 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     else:
         reasons.append('genre mismatch (+0.0)')
 
-    if mood_key is not None and song.get('mood') == mood_key:
-        score += 1.0
-        reasons.append('mood match (+1.0)')
-    else:
-        reasons.append('mood mismatch (+0.0)')
+    # if mood_key is not None and song.get('mood') == mood_key:
+    #     score += 1.0
+    #     reasons.append('mood match (+1.0)')
+    # else:
+    #     reasons.append('mood mismatch (+0.0)')
 
     if energy_key is not None:
         energy_distance = abs(song.get('energy', 0.0) - float(energy_key))

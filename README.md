@@ -64,6 +64,14 @@ This system may over-prioritize genre, which can ignore good songs that match th
 
 ![screenshot of terminal output showing the pop/happy recommendations](image.png)
 
+![terminal output for each profile's recommendations](image-1.png)
+
+Profile comparisons:
+- High-Energy Pop vs Chill Lofi: The High-Energy Pop profile prefers bright pop songs with strong energy scores, while Chill Lofi shifts toward slow, relaxed lofi tracks. This matches the intended difference between high-energy pop and low-energy chill listening.
+- Chill Lofi vs Deep Intense Rock: Chill Lofi returns mellow, calm choices and Deep Intense Rock returns aggressive, high-energy songs, which is expected because the rock profile asks for intense mood and high energy.
+- High-Energy Pop vs Conflicting Energy + Mood: The conflicting profile still ranks pop songs highly even though it asks for a relaxed mood, showing that genre and energy dominate the current scoring.
+- Genre vs Acoustic Mismatch: This profile surfaces electronic genre matches first and highlights that acoustic preference is not yet strong enough to counteract the genre bonus.
+
 ---
 
 ## Getting Started
@@ -238,9 +246,10 @@ Examples:
 
 ## 9. Personal Reflection
 
-A few sentences about what you learned:
+I learned that engineering a recommender is mostly about choosing the right signals and balancing them so the output still feels relevant. My biggest learning moment came when I saw how a simple genre bonus could overwhelm mood and energy, which made the recommendations feel one-dimensional even though the logic was easy to understand.
 
-- What surprised you about how your system behaved
-- How did building this change how you think about real music recommenders
-- Where do you think human judgment still matters, even if the model seems "smart"
+Using AI tools helped me write and structure the project faster, especially when I needed clear explanations for the README and model card. I still double-checked the AI’s suggestions against the actual code and the song ranking behavior, because the tools can be too confident about how the system works if I do not verify the details.
 
+I was surprised that a very simple algorithm can still “feel” like recommendations when the right songs rise to the top for a given profile. Even basic scoring and sorting can create sensible output, but it also made me realize that feeling like a recommendation does not mean the system is complete or unbiased.
+
+If I extended this project, I would add acousticness and tempo into the score, restore and tune mood influences, and introduce a diversity factor so top results are not all from the same genre. I would also experiment with a bit of feedback data, like likes or skips, to move the system closer to a real user-aware recommender.
