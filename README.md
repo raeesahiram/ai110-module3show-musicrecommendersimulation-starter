@@ -29,6 +29,41 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
+Major streaming platforms like Spotify and YouTube use hybrid recommendation systems that combine collaborative filtering (analyzing what millions of users like) and content-based filtering (analyzing song attributes like genre, energy, and mood). In production, these systems also incorporate user behavior signals (skips, likes, listening time), contextual information (time of day, device type), and ranking rules to ensure diversity. This simulation focuses on content-based filtering (matching a user's taste profile to song features) as a simplified, interpretable model of how these systems work. We ignore user interaction history and popularity bias to keep the problem manageable while still capturing the core challenge: how do you quantify whether someone will love a song?
+
+Song Attributes
+- id, title, artist — identifiers
+- genre — pop, rock, lofi, jazz, ambient, synthwave, indie pop
+- mood — happy, chill, intense, relaxed, moody, focused
+- energy — 0.28–0.93 (low to high intensity)
+- tempo_bpm — 60–152 (speed in beats per minute)
+- valence — 0.48–0.84 (how positive/happy the song sounds)
+- danceability — 0.41–0.88 (how suitable for dancing)
+- acousticness — 0.05–0.92 (acoustic vs. electronic)
+
+User Profile
+- favorite_genre — something from the song genres
+- favorite_mood — something from the song moods
+- target_energy — a number from 0–1
+- likes_acoustic — true or false
+
+Plan and Algorithm Recipe
+This system uses a simple content-based scoring recipe:
+- +2.0 points when the song genre matches `favorite_genre`
+- +1.0 point when the song mood matches `favorite_mood`
+- Add an energy similarity score based on how close `song.energy` is to `target_energy`
+
+The process is:
+1. Load each song from `songs.csv`
+2. Compute a score for each song using genre, mood, and energy
+3. Sort songs by total score descending
+4. Return the top K songs as recommendations
+
+Expected Biases
+This system may over-prioritize genre, which can ignore good songs that match the user’s mood or energy. It also does not consider full listening behavior, so it can miss songs that users might like for reasons outside genre/mood/energy.
+
+![screenshot of terminal output showing the pop/happy recommendations](image.png)
+
 ---
 
 ## Getting Started
